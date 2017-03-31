@@ -36,7 +36,9 @@
 
   <ion-grid class="show-search" *ngIf="search">
     <ion-list no-lines>
-
+      <ion-list-header>
+        <p>Results: {{ filteredColleges.length }}</p>
+      </ion-list-header>
       <ion-item class="search_item" text-wrap tappable
         *ngFor="let college of filteredColleges" (click)="goToCollege(college.unitid)">
         <h2>{{ college.instnm }}</h2>

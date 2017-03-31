@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Searchbar, ModalController, NavParams } from 'ionic-angular';
+import { NavController, Searchbar, ModalController, NavParams, Content } from 'ionic-angular';
 
 import { SearchFiltersPage } from '../search-filters/search-filters';
 
@@ -11,6 +11,7 @@ import { User } from '../../providers/user';
 })
 export class SearchPage {
   @ViewChild(Searchbar) searchEl: Searchbar;
+  @ViewChild(Content) content: Content;
 
   public search: boolean = false;
   public filters: Object = {
@@ -42,8 +43,8 @@ export class SearchPage {
     let query:any = this.searchEl.value;
 
     if (searchbar && query.length < 3) {
-      this.search = false;
-      this.filteredColleges = [];
+      //this.search = false;
+      //this.filteredColleges = [];
       return;
     }
 
@@ -93,7 +94,7 @@ export class SearchPage {
     });
 
     this.filteredColleges = this.filteredColleges.slice(0,99);
-
+    this.content.scrollToTop();
   }
 
   clearSearch() {
@@ -101,14 +102,17 @@ export class SearchPage {
   }
 
   openFilters() {
-    let filtersModal = this.modalCtrl.create(SearchFiltersPage, {filters: this.filters});
+    let filtersModal = this.modalCtrl.create(SearchFiltersPage, {filters: this.filters}, {enableBackdropDismiss: false});
     filtersModal.onDidDismiss(data => {
       console.log(data);
       this.filters = data.filters;
       if (data.search) this.getColleges();
       else {
+        this.search = false;
         this.filteredColleges = [];
       }
+      // Scroll to the top
+      this.content.scrollToTop();
     });
     filtersModal.present();
   }
