@@ -1,0 +1,187 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Profile
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)="logout()">
+        Logout
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid fixed>
+
+    <form [formGroup]="profileForm" novalidate>
+
+      <ion-row class="profile-pic">
+        <ion-col col-4 text-center class="pic-col">
+          <ion-thumbnail><img src="assets/images/mr-cesar-face.png"></ion-thumbnail>
+          <!-- <p>Change</p> -->
+        </ion-col>
+        <ion-col col-8 class="name-email">
+          <ion-item no-lines>
+            <ion-input formControlName="firstName" type="text" placeholder="First Name"></ion-input>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-input formControlName="lastName" type="text" placeholder="Last Name"></ion-input>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-input disabled formControlName="email" type="text" placeholder="Email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-group no-lines>
+        <ion-item-divider color="light">High School Info</ion-item-divider>
+        <ion-item (click)="changeHS()">
+          <ion-label>HS</ion-label>
+          <ion-input disabled class="hs" formControlName="hsName" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>State</ion-label>
+          <!-- <span item-right>{{ (myProfile | async)?.state }}</span> -->
+          <ion-select formControlName="state">
+              <ion-option value="AL">AL</ion-option>
+              <ion-option value="AK">AK</ion-option>
+              <ion-option value="AZ">AZ</ion-option>
+              <ion-option value="AR">AR</ion-option>
+              <ion-option value="CA">CA</ion-option>
+              <ion-option value="CO">CO</ion-option>
+              <ion-option value="CT">CT</ion-option>
+              <ion-option value="DE">DE</ion-option>
+              <ion-option value="FL">FL</ion-option>
+              <ion-option value="GA">GA</ion-option>
+              <ion-option value="HI">HI</ion-option>
+              <ion-option value="ID">ID</ion-option>
+              <ion-option value="IL">IL</ion-option>
+              <ion-option value="IN">IN</ion-option>
+              <ion-option value="IA">IA</ion-option>
+              <ion-option value="KS">KS</ion-option>
+              <ion-option value="KY">KY</ion-option>
+              <ion-option value="LA">LA</ion-option>
+              <ion-option value="ME">ME</ion-option>
+              <ion-option value="MD">MD</ion-option>
+              <ion-option value="MA">MA</ion-option>
+              <ion-option value="MI">MI</ion-option>
+              <ion-option value="MN">MN</ion-option>
+              <ion-option value="MS">MS</ion-option>
+              <ion-option value="MO">MO</ion-option>
+              <ion-option value="MT">MT</ion-option>
+              <ion-option value="NE">NE</ion-option>
+              <ion-option value="NV">NV</ion-option>
+              <ion-option value="NH">NH</ion-option>
+              <ion-option value="NJ">NJ</ion-option>
+              <ion-option value="NM">NM</ion-option>
+              <ion-option value="NY">NY</ion-option>
+              <ion-option value="NC">NC</ion-option>
+              <ion-option value="ND">ND</ion-option>
+              <ion-option value="OH">OH</ion-option>
+              <ion-option value="OK">OK</ion-option>
+              <ion-option value="OR">OR</ion-option>
+              <ion-option value="PA">PA</ion-option>
+              <ion-option value="RI">RI</ion-option>
+              <ion-option value="SC">SC</ion-option>
+              <ion-option value="SD">SD</ion-option>
+              <ion-option value="TN">TN</ion-option>
+              <ion-option value="TX">TX</ion-option>
+              <ion-option value="UT">UT</ion-option>
+              <ion-option value="VT">VT</ion-option>
+              <ion-option value="VA">VA</ion-option>
+              <ion-option value="WA">WA</ion-option>
+              <ion-option value="WV">WV</ion-option>
+              <ion-option value="WI">WI</ion-option>
+              <ion-option value="WY">WY</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Graduation</ion-label>
+          <ion-datetime formControlName="graduation" displayFormat="YYYY"
+            min="2015" max="2021" placeholder="Grad Year"></ion-datetime><!--[(ngModel)]="myDate"-->
+        </ion-item>
+        <ion-item>
+          <ion-label>Counselor</ion-label>
+          <ion-input formControlName="counselor" type="text"></ion-input>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group no-lines>
+        <ion-item-divider color="light">Academic Info</ion-item-divider>
+        <ion-item>
+          <ion-label>GPA Scale</ion-label>
+          <!-- <span item-right>{{ (myProfile | async)?.gpaScale }}</span> -->
+          <ion-select formControlName="gpaScale">
+             <ion-option value="100">100</ion-option>
+             <ion-option value="4">4.0</ion-option>
+           </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>GPA</ion-label>
+          <ion-input formControlName="gpa" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Testing</ion-label>
+          <!-- <span item-right>{{ (myProfile | async)?.test }}</span> -->
+          <ion-select formControlName="test">
+             <ion-option value="SAT">SAT</ion-option>
+             <ion-option value="ACT">ACT</ion-option>
+           </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>SAT Verbal</ion-label>
+          <ion-input formControlName="satR" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>SAT Math</ion-label>
+          <ion-input formControlName="satM" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>ACT Composite</ion-label>
+          <ion-input formControlName="actC" type="number"></ion-input>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group no-lines>
+        <ion-item-divider color="light">Personal Info</ion-item-divider>
+        <ion-item>
+          <ion-label>Date of Birth</ion-label>
+          <ion-datetime formControlName="dob" item-content displayFormat="MM/DD/YYYY"
+            min="1987" max="2010" placeholder="DOB">
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Race / Ethnicity</ion-label>
+          <ion-select formControlName="race">
+            <ion-option value="latino">Hispanic/Latino</ion-option>
+            <ion-option value="black">Black/African American</ion-option>
+            <ion-option value="white">White</ion-option>
+            <ion-option value="asian">Asian/Pacific Islander</ion-option>
+            <ion-option value="nativeAmerican">Native American/First Nations</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Family Income</ion-label>
+          <ion-select formControlName="familyIncome">
+            <ion-option value="income1">$0-$30,000</ion-option>
+            <ion-option value="income2">$30,001-$48,000</ion-option>
+            <ion-option value="income3">$48,001-$75,000</ion-option>
+            <ion-option value="income4">$75,001-$110,000</ion-option>
+            <ion-option value="income5">$110,001+</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Gender</ion-label>
+          <ion-input formControlName="gender" type="text"></ion-input>
+        </ion-item>
+      </ion-item-group>
+
+    </form>
+
+  </ion-grid>
+
+</ion-content>

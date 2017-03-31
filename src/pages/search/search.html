@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-row>
+      <ion-col col-10>
+        <ion-searchbar #searchbar (ionInput)="getColleges($event)"></ion-searchbar>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button icon-only>
+          <ion-icon name="options"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row> -->
+  <ion-searchbar #searchbar
+    (ionInput)="getColleges($event)"
+    (ionClear)="clearSearch()">
+  </ion-searchbar>
+  <ion-buttons right>
+    <button ion-button icon-only color="dark" (click)="openFilters()">
+      <ion-icon name="options"></ion-icon>
+    </button>
+  </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid class="clear-search" *ngIf="!search">
+    <ion-row>
+      <ion-col col-12 text-center>
+        <img class="logo" src="assets/images/logo.png">
+        <h3>Search for a school by name</h3>
+        <p>Click on the button above to filter the results by <strong>location, major, and more.</strong></p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="show-search" *ngIf="search">
+    <ion-list no-lines>
+
+      <ion-item class="search_item" text-wrap tappable
+        *ngFor="let college of filteredColleges" (click)="goToCollege(college.unitid)">
+        <h2>{{ college.instnm }}</h2>
+        <p> {{ college.city}}, {{ college.state}}</p>
+        <ion-row class="college_stats_row">
+          <ion-col col-4>
+            <p>Graduation Rate</p>
+            <h2><span *ngIf="college.grad_rate != 'NULL'">{{ college.grad_rate | percent:'1.0-0' }}</span></h2>
+          </ion-col>
+          <ion-col col-4>
+            <p>Retention Rate</p>
+            <h2><span *ngIf="college.retention_rate != 'NULL'">{{ college.retention_rate | percent:'1.0-0' }}</span></h2>
+          </ion-col>
+          <ion-col col-4>
+            <p>Admission Rate</p>
+            <h2><span *ngIf="college.adm_rate != 'NULL'">{{ college.adm_rate | percent:'1.0-0' }}</span></h2>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </ion-list>
+  </ion-grid>
+</ion-content>

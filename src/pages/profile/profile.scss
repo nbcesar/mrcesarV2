@@ -1,0 +1,67 @@
+page-profile {
+
+  .header .toolbar-background {
+    background-color: #00A88C !important;
+  }
+
+  .scroll-content {
+    background: #fff;
+  }
+
+  .grid {
+    height: 100%;
+    max-width: 720px !important;
+  }
+
+  .item {
+    background-color: #fff;
+  }
+
+  .item-divider {
+    background-color: #f4f4f4;
+  }
+
+  .profile-pic {
+    img {
+      max-height: 150px;
+    }
+  }
+
+  .pic-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  ion-item-divider .label{
+    font-weight: bold;
+  }
+
+  .text-input {
+    text-align: right !important;
+  }
+
+  .name-email .item {
+    height: 33%;
+  }
+  .name-email .text-input{
+    text-align: left !important;
+  }
+
+  .datetime-text:empty:not(:focus):before{
+    content: "Select a date"
+  }
+
+  ion-label {
+    color: #999 !important;
+  }
+
+  .item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+    border-bottom-color: #dedede !important;
+    box-shadow: inset 0 0 0 0 #dedede !important;
+  }
+
+  .text-input[disabled] {
+    opacity: 1 !important;
+  }
+}

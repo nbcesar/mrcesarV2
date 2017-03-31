@@ -1,0 +1,39 @@
+<ion-header  no-border>
+  <ion-navbar primary>
+    <ion-title>Mr.Cesar</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="no-scroll">
+
+  <ion-grid fixed>
+    <ion-row class="image-row" justify-content-center >
+      <ion-col col-4 align-self-end>
+
+        <img src="assets/images/mr-cesar-face.png">
+
+
+      </ion-col>
+      <ion-col col-8>
+        <div class="speech-bubble">
+          <p class="text" *ngIf="welcome_text">{{ welcome_text }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="button-row" justify-content-center>
+      <ion-col col-12>
+        <button ion-button block color="light" (click)="signUpForm()">Get Started</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <button class="prev-button" ion-button clear full color="dark" (click)="logInForm()">
+      Already have an account? Log in here...
+    </button>
+  </ion-row>
+</ion-footer>

@@ -1,0 +1,147 @@
+<!--
+  Generated template for the SearchFilters page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only color="dark" (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Search Options</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="dark" (click)="sendFilters()">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>State(s)</ion-label>
+      <ion-select [(ngModel)]="states" multiple="true" cancelText="Clear"
+        okText="Okay!" placeholder="All">
+        <ion-option>AL</ion-option> <ion-option>AK</ion-option>
+        <ion-option>AZ</ion-option> <ion-option>AR</ion-option>
+        <ion-option>CA</ion-option> <ion-option>CO</ion-option>
+        <ion-option>CT</ion-option> <ion-option>DE</ion-option>
+        <ion-option>FL</ion-option> <ion-option>GA</ion-option>
+        <ion-option>HI</ion-option> <ion-option>ID</ion-option>
+        <ion-option>IL</ion-option> <ion-option>IN</ion-option>
+        <ion-option>IA</ion-option> <ion-option>KS</ion-option>
+        <ion-option>KY</ion-option> <ion-option>LA</ion-option>
+        <ion-option>ME</ion-option> <ion-option>MD</ion-option>
+        <ion-option>MA</ion-option> <ion-option>MI</ion-option>
+        <ion-option>MN</ion-option> <ion-option>MS</ion-option>
+        <ion-option>MO</ion-option> <ion-option>MT</ion-option>
+        <ion-option>NE</ion-option> <ion-option>NV</ion-option>
+        <ion-option>NH</ion-option> <ion-option>NJ</ion-option>
+        <ion-option>NM</ion-option> <ion-option>NY</ion-option>
+        <ion-option>NC</ion-option> <ion-option>ND</ion-option>
+        <ion-option>OH</ion-option> <ion-option>OK</ion-option>
+        <ion-option>OR</ion-option> <ion-option>PA</ion-option>
+        <ion-option>RI</ion-option> <ion-option>SC</ion-option>
+        <ion-option>SD</ion-option> <ion-option>TN</ion-option>
+        <ion-option>TX</ion-option> <ion-option>UT</ion-option>
+        <ion-option>VT</ion-option> <ion-option>VA</ion-option>
+        <ion-option>WA</ion-option> <ion-option>WV</ion-option>
+        <ion-option>WI</ion-option> <ion-option>WY</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Majors</ion-label>
+      <ion-select [(ngModel)]="majors" multiple="true" cancelText="Cancel" okText="Okay!" placeholder="Majors">
+        <ion-option *ngFor="let major of majorsList" value="{{major[0]}}">{{major[1]}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <h2 text-center>Degree Type</h2>
+        <ion-segment [(ngModel)]="college_degree" color="dark">
+          <ion-segment-button value="all">
+            Both
+          </ion-segment-button>
+          <ion-segment-button value="Associate's">
+            Associate's
+          </ion-segment-button>
+          <ion-segment-button value="Bachelor's">
+            Bachelor's
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+
+      <!-- Public/Private-->
+      <ion-item>
+        <h2 text-center>Ownership</h2>
+        <ion-segment [(ngModel)]="college_control" color="dark">
+          <ion-segment-button value="all">
+            Both
+          </ion-segment-button>
+          <ion-segment-button value="Public">
+            Public
+          </ion-segment-button>
+          <ion-segment-button value="Private" >
+            Private
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+
+      <!-- Single Gender-->
+      <ion-item>
+        <h2 text-center>Gender</h2>
+        <ion-segment [(ngModel)]="college_gender" color="dark">
+          <ion-segment-button value="all">
+            Mixed
+          </ion-segment-button>
+          <ion-segment-button value="menonly" >
+            Men's
+          </ion-segment-button>
+          <ion-segment-button value="womenonly">
+            Women's
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+
+      <!-- College Type-->
+      <ion-item>
+        <h2 text-center>Type</h2>
+        <ion-segment [(ngModel)]="college_type" color="dark">
+          <ion-segment-button value="all">
+            All
+          </ion-segment-button>
+          <ion-segment-button value="hbcu">
+            HBCU
+          </ion-segment-button>
+          <ion-segment-button value="pbi" >
+            PBI
+          </ion-segment-button>
+          <ion-segment-button value="hsi">
+            HSI
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+
+      <ion-row>
+        <ion-col col-6 class="toggle_filter">
+          <ion-label> Test-Optional Only</ion-label>
+          <ion-toggle [(ngModel)]="test_optional" checked="false" color="dark"></ion-toggle>
+        </ion-col>
+        <ion-col col-6 class="toggle_filter">
+          <ion-label> Liberal Arts Only</ion-label>
+          <ion-toggle [(ngModel)]="liberal_arts" checked="false" color="dark"></ion-toggle>
+        </ion-col>
+      </ion-row>
+
+  </ion-list>
+
+</ion-content>

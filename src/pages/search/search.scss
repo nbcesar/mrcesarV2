@@ -1,0 +1,38 @@
+page-search {
+  .header .toolbar-background {
+    background-color: #00A88C !important;
+  }
+  .searchbar {
+    max-width: 500px;
+  }
+  .searchbar-input {
+    background-color: #f4f4f4 !important;
+    //max-width: 500px;
+  }
+  .toolbar-content{
+    display: flex;
+    justify-content: center;
+  }
+
+  .grid {
+    height: 100%;
+    max-width: 720px !important;
+  }
+  .clear-search {
+    justify-content: center;
+  }
+  .show-search {
+
+  }
+  .logo {
+    max-height: 150px;
+  }
+  .college_stats_row {
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: flex-start;
+  }
+  .search_item:nth-child(even) {
+    background-color: #f4f4f4 !important;
+  }
+}

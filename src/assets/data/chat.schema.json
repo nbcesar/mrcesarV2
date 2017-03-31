@@ -1,0 +1,24 @@
+{
+  "name of topic": {
+    "messages": [
+      {
+        "text": "text",
+        "from": "MrCesar or user"
+      }
+    ],
+    "responses": {
+      "name": "name-of-response",
+      "type": "buttons or input",
+      "buttons": [
+        {
+          "text": "button text",
+          "value": "button value",
+          "handler": {
+            "type": "sendMessage or prompt",
+            "goTo": "name of next topic or prompt"
+          }
+        }
+      ]
+    }
+  }
+}

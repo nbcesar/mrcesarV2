@@ -1,0 +1,22 @@
+page-search-filters {
+  .header .toolbar-background {
+    background-color: #00A88C !important;
+  }
+
+  .label {
+    color: #000 !important;
+
+    h2 {
+      margin-bottom: 5px;
+    }
+  }
+
+  .toggle_filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+
+}

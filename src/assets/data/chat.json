@@ -1,0 +1,213 @@
+{
+  "signin-1": {
+    "messages": [
+      {
+        "text": "Hello",
+        "from": "MrCesar"
+      },
+      {
+        "text": "I'm Mr. Cesar, your digital College Counselor.",
+        "from": "MrCesar"
+      }
+
+    ],
+    "response": {
+      "name": "hello-mr-cesar",
+      "type": "buttons",
+      "buttons": [
+        {
+          "text": "Hi, Mr. Cesar",
+          "value": "hello-mr-cesar",
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-2"
+          }
+        },
+        {
+          "text": "What's up",
+          "value": "hello-mr-cesar",
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-2"
+          }
+        }
+      ]
+    }
+  },
+  "signin-2": {
+    "messages": [
+      {
+        "text": "I can help you find the right colleges to apply to.",
+        "from": "MrCesar"
+      },
+      {
+        "text": "But first, I need a little bit of information.",
+        "from": "MrCesar"
+      },
+      {
+        "text": "What is your first name?",
+        "from": "MrCesar"
+      }
+    ],
+    "response": {
+      "name": "firstName",
+      "saveToProfile": true,
+      "type": "input",
+      "input-type": "text",
+      "handler": {
+        "type": "sendMessage",
+        "goTo": "signin-3"
+      }
+    }
+  },
+  "signin-3": {
+    "messages": [
+      {
+        "text": "Ok firstName. Nice to meet you.",
+        "variables": [
+          "firstName"
+        ],
+        "from": "MrCesar"
+      },
+      {
+        "text": "What's your email address? ",
+        "from": "MrCesar"
+      },
+      {
+        "text": "Click below to create an account.",
+        "from": "MrCesar"
+      }
+    ],
+    "response": {
+      "name": "email-password",
+      "type": "buttons",
+      "buttons": [
+        {
+          "text": "Ready",
+          "value": "ready",
+          "handler": {
+            "type": "prompt",
+            "prompt": "email",
+            "goTo": "signin-4"
+          }
+        }
+      ]
+    }
+  },
+  "signin-4": {
+    "messages": [
+      {
+        "text": "Great - Next I need to know about your GPA and Test scores.",
+        "from": "MrCesar"
+      },
+      {
+        "text": "These stats will help me calculate your chances of getting in to different colleges.",
+        "from": "MrCesar"
+      },
+      {
+        "text": "If you don't remember exactly, give your best estimate.",
+        "from": "MrCesar"
+      },
+      {
+        "text": "Click below when you are ready.",
+        "from": "MrCesar"
+      }
+    ],
+    "response": {
+      "name": "academics",
+      "type": "buttons",
+      "buttons": [
+        {
+          "text": "Ready",
+          "value": "ready",
+          "handler": {
+            "type": "prompt",
+            "prompt": "academics",
+            "goTo": "signin-5"
+          }
+        }
+      ]
+    }
+  },
+  "signin-5": {
+    "messages": [
+      {
+        "text": "Sweet - 1 more ask.",
+        "from": "MrCesar"
+      },
+      {
+        "text": "What is your Race/Ethnicity? Weird question...I know but it will help me really personalize my advice.",
+        "from": "MrCesar"
+      }
+    ],
+    "response": {
+      "name": "race",
+      "saveToProfile": true,
+      "type": "buttons",
+      "buttons": [
+        {
+          "text": "White",
+          "value": "white",
+          "name": "race",
+          "saveToProfile": true,
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-6"
+          }
+        },
+        {
+          "text": "Black",
+          "value": "black",
+          "name": "race",
+          "saveToProfile": true,
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-6"
+          }
+        },
+        {
+          "text": "Asian",
+          "value": "asian",
+          "name": "race",
+          "saveToProfile": true,
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-6"
+          }
+        },
+        {
+          "text": "Latino",
+          "value": "latino",
+          "name": "race",
+          "saveToProfile": true,
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-6"
+          }
+        },
+        {
+          "text": "Native American",
+          "value": "nativeAmerican",
+          "name": "race",
+          "saveToProfile": true,
+          "handler": {
+            "type": "sendMessage",
+            "goTo":"signin-6"
+          }
+        }
+      ]
+    }
+  },
+  "signin-6": {
+    "messages": [
+      {
+        "text": "Perfect...let me run some numbers.",
+        "from": "MrCesar"
+      }
+    ],
+    "response": {
+      "name": "createUser",
+      "type": "createUser"
+    }
+  }
+}

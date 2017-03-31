@@ -1,0 +1,39 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col col-12 class="img-col">
+        <img src="assets/images/logo.png">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 class="form-col">
+        <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+          <ion-item no-lines>
+            <ion-label stacked>Email</ion-label>
+            <ion-input (blur)="checkValid()" formControlName="email" type="email" placeholder="Email"></ion-input>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-label stacked>Password</ion-label>
+            <ion-input (blur)="checkValid()" formControlName="password" type="password" placeholder="Password"></ion-input>
+          </ion-item>
+          <ion-item no-lines>
+            <button ion-button large full type="submit" color="primary">Login</button>
+            <!-- [disabled]="!loginForm.valid" -->
+          </ion-item>
+
+        </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>
