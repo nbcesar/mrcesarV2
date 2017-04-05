@@ -13,14 +13,26 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-grid no-padding class="college-list">
+
+  
+    <ion-row class="progress-bar">
+      <ion-col>
+        <div class="progress-outer">
+          <div class="progress-inner"><!--[style.width]="50 + '%'"-->
+              50%
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
 
     <ion-list  no-lines>
 
       <ion-item-group [reorder]="reOrder" (ionItemReorder)="reorderItems($event)" >
         <ion-item *ngFor="let school of filteredList; let i = index" text-wrap>
           <ion-row>
-            <ion-col col-2 class="school-demo">
+            <ion-col col-2 class="school-demo" align-self-center>
               <h1><ion-icon name="{{ school?.icon }}" color="dark"></ion-icon></h1>
             </ion-col>
             <ion-col (click)="goToCollege(school.unitid)" col-9 class="school-demo">
@@ -43,26 +55,29 @@
 </ion-content>
 
 <ion-footer>
-  <ion-buttons *ngIf="collegeOdds" class="footer-buttons">
-    <button ion-button (click)="toggleFilter('all')" [color]="filter == 'all' ? 'primary': 'light'">
-      All
-    </button>
-    <button ion-button (click)="toggleFilter('moonshot')" icon-only [color]="filter == 'moonshot' ? 'primary': 'light'">
-      <ion-icon name="star-half"></ion-icon>
-    </button>
-    <button ion-button (click)="toggleFilter('reach')" icon-only [color]="filter == 'reach' ? 'primary': 'light'">
-      <!-- <ion-icon name="color-wand"></ion-icon> -->
-      <ion-icon name="flag"></ion-icon>
-    </button>
-    <button ion-button (click)="toggleFilter('target')" icon-only [color]="filter == 'target' ? 'primary': 'light'">
-      <ion-icon name="locate"></ion-icon>
-    </button>
-    <button ion-button (click)="toggleFilter('safety')" icon-only [color]="filter == 'safety' ? 'primary': 'light'">
-      <ion-icon name="warning"></ion-icon>
 
-    </button>
+  <ion-toolbar *ngIf="collegeOdds">
+    <ion-buttons  class="footer-buttons">
+      <button ion-button (click)="toggleFilter('all')" [color]="filter == 'all' ? 'primary': 'dark'">
+        All
+      </button>
+      <button ion-button (click)="toggleFilter('moonshot')" icon-only [color]="filter == 'moonshot' ? 'primary': 'dark'">
+        <ion-icon name="star-half"></ion-icon>
+      </button>
+      <button ion-button (click)="toggleFilter('reach')" icon-only [color]="filter == 'reach' ? 'primary': 'dark'">
+        <!-- <ion-icon name="color-wand"></ion-icon> -->
+        <ion-icon name="flag"></ion-icon>
+      </button>
+      <button ion-button (click)="toggleFilter('target')" icon-only [color]="filter == 'target' ? 'primary': 'dark'">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+      <button ion-button (click)="toggleFilter('safety')" icon-only [color]="filter == 'safety' ? 'primary': 'dark'">
+        <ion-icon name="warning"></ion-icon>
 
-  </ion-buttons>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
   <ion-toolbar *ngIf="!collegeOdds" class="footer-text">
     <p>Complete your academic profile to get your admission chances.</p>
   </ion-toolbar>

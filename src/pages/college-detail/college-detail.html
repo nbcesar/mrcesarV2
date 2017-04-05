@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-
+    <ion-title>Mr. Cesar</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,7 +10,8 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-12 class="college_info_text " text-center>
+      <ion-col col-12 class="college_info_text" text-center>
+
         <h1>
           {{ collegeData?.instnm }}
           <!-- <ion-icon *ngIf="collegeData?.womenonly" color="dark" name="female"></ion-icon>
@@ -21,8 +22,8 @@
         </p>
       </ion-col>
     </ion-row>
-    <ion-row align-items-center class="header-row">
-      <ion-col class="college_info_text" col-9>
+    <ion-row align-items-center class="header-row ">
+      <ion-col class="college_info_text " col-9>
         <p>{{ collegeData?.locale }} | {{ collegeData?.control }}</p>
       </ion-col>
       <ion-col col-3 class="college-buttons">
@@ -36,31 +37,31 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col col-12 col-md-6 class="stat-box">
+    <ion-row justify-content-around>
+      <ion-col col-12 col-md-5 class="stat-box">
         <h4 class="stat-header" text-center>Graduation Rate: {{ collegeData?.grad_rate | percent:'1.0-0'}}</h4>
         <canvas #gradCanvas></canvas>
       </ion-col>
 
-      <ion-col col-12 col-md-6 class="stat-box">
+      <ion-col col-12 col-md-5 class="stat-box">
         <h4 class="stat-header" text-center># of Students: {{ collegeData?.ugds }} </h4>
         <canvas #studentsCanvas></canvas>
       </ion-col>
 
     </ion-row>
 
-    <ion-row>
-      <ion-col col-6 col-md-2 offset-md-1 class="stat-box">
-        <p class="stat-header" text-center>Retention Rate</p>
+    <ion-row justify-content-around>
+      <ion-col col-5 col-md-2 class="stat-box">
+        <h4 class="stat-header" text-center>Retention Rate</h4>
         <canvas #retentionCanvas></canvas>
       </ion-col>
 
-      <ion-col col-6 col-md-2 class="stat-box">
-        <p class="stat-header" text-center>Admit Rate</p>
+      <ion-col col-5 col-md-2 class="stat-box">
+        <h4 class="stat-header" text-center>Admit Rate</h4>
         <canvas #admitCanvas></canvas>
       </ion-col>
 
-      <ion-col col-12 col-md-6 offset-md-1 class="stat-box">
+      <ion-col col-12 col-md-5 class="stat-box">
         <h4 class="stat-header" text-center>Test Scores: 25th-75th</h4>
 
         <p class="range-p">SAT Reading</p>
@@ -80,8 +81,8 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col col-12 col-md-6 class="stat-box">
+    <ion-row justify-content-around>
+      <ion-col col-12 col-md-5 class="stat-box">
         <h4 class="stat-header" text-center>Popular Majors</h4>
         <!-- <ion-item class="pop-majors" *ngFor="let major of popMajors; let i = index" text-wrap no-lines>
           <p><span class="pop-perc">{{ major[0] | percent: '1.0-0' }}: </span><span class="pop-name"> {{ major[1] }}</span></p>
@@ -93,7 +94,7 @@
         </ul>
       </ion-col>
 
-      <ion-col col-12 col-md-6 class="stat-box">
+      <ion-col col-12 col-md-5 class="stat-box">
         <h4 class="stat-header" text-center>$ Outcomes</h4>
         <ion-item class="outcomes" no-lines>
           <h6>{{ collegeData?.md_earn_wne_p10 | currency:'USD':true }}</h6>

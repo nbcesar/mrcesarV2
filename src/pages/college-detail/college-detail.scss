@@ -2,13 +2,17 @@ page-college-detail {
   .header .toolbar-background {
     background-color: #00A88C !important;
   }
+  .toolbar-title {
+    text-align: center;
+    font-family: Lobster;
+  }
   .back-button {
     color: #000;
   }
   .scroll-content {
     background-color: #f4f4f4;
+    padding: 5px !important;
     padding-top: 0 !important;
-    padding: 0 !important;
   }
   .grid {
     max-width: 960px;
@@ -48,13 +52,20 @@ page-college-detail {
     }
   }
 
+  .white-background {
+    background-color: #fff;
+  }
+
   .stat-header {
     color: #00A88C;
   }
 
   .stat-box {
-    margin-top: 5px;
-    box-shadow: 3px 3px 5px #888888;
+    margin-top: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #888888;
+    border: 1px solid #f4f4f4;
   }
 
   .range-md .range-pin, .range-ios .range-pin {
@@ -81,6 +92,7 @@ page-college-detail {
   .pop-perc {
     color: #000;
     font-weight: bold;
+    text-align: left;
   }
 
   .outcomes {

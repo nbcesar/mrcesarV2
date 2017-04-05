@@ -122,6 +122,7 @@ export class User {
     // At least one has data
     if (!this.localList) {
       // No local data, pull fb data to device
+      this.localList = this.remoteList;
       this.userList.next(this.remoteList);
       this.storage.set('list', this.remoteList);
     }
@@ -146,7 +147,7 @@ export class User {
 
   // List was reorderd - save locally and to FB
   updateList(indexes) {
-    //this.getList();
+    this.getList();
 
     let from = indexes.from;
     let to = indexes.to;
@@ -305,7 +306,6 @@ export class User {
 
   logout(): any {
     this.storage.clear().then(() => {
-      console.log('storage cleared');
       firebase.auth().signOut();
     });
   }
