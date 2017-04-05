@@ -3,95 +3,67 @@
     <ion-title>
       My List
     </ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="dark" (click)="toggleListOptions()">
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-grid>
-    <ion-row>
-        <ion-col ion-item no-lines reorder="true" col-12 col-sm-6 col-md-3 *ngFor="let school of list; let i = index">
-          <ion-card>
-            <ion-card-header text-wrap>
-              <h2>#{{ i + 1}}: {{ school.instnm }}</h2>
-              <p>{{ school.city }}, {{ school.stabbr }}</p>
-            </ion-card-header>
-            <ion-card-content>
-
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
-
   <ion-grid no-padding class="college-list">
 
-    <ion-list reorder="true" (ionItemReorder)="reorderItems($event)" no-lines>
-      <!-- <ion-item *ngFor="let school of list; let i = index" text-wrap>
-        <h2>#{{ i + 1}}: {{ school.instnm }}</h2>
-        <p>{{ school.city }}, {{ school.stabbr }}</p>
-      </ion-item> -->
-      <ion-item *ngFor="let school of list; let i = index" text-wrap>
-        <ion-row>
-          <!-- <ion-col align-self-center col-2>
-            <h2>#{{ i + 1 }}</h2>
-          </ion-col> -->
+    <ion-list  no-lines>
 
-          <ion-col col-12 class="school-demo">
-            <h2>{{ school.instnm }}</h2>
-            <p>{{ school.city }}, {{ school.stabbr }}</p>
-          </ion-col>
-        </ion-row>
-      </ion-item>
+      <ion-item-group [reorder]="reOrder" (ionItemReorder)="reorderItems($event)" >
+        <ion-item *ngFor="let school of filteredList; let i = index" text-wrap>
+          <ion-row>
+            <ion-col col-2 class="school-demo">
+              <h1><ion-icon name="{{ school?.icon }}" color="dark"></ion-icon></h1>
+            </ion-col>
+            <ion-col (click)="goToCollege(school.unitid)" col-9 class="school-demo">
+              <h2>
+                <!-- <ion-icon name="{{ school.icon }}"></ion-icon> -->
+                {{ school.instnm }}
+              </h2>
+              <p>{{ school.city }}, {{ school.stabbr }}</p>
+            </ion-col>
+            <ion-col *ngIf="listOptions" col-1 class="school-demo" align-self-center>
+              <ion-icon color="danger" name="trash" (click)="removeSchool(school)"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-group>
+
     </ion-list>
   </ion-grid>
 
 </ion-content>
 
 <ion-footer>
-  <ion-buttons>
+  <ion-buttons *ngIf="collegeOdds" class="footer-buttons">
     <button ion-button (click)="toggleFilter('all')" [color]="filter == 'all' ? 'primary': 'light'">
       All
     </button>
     <button ion-button (click)="toggleFilter('moonshot')" icon-only [color]="filter == 'moonshot' ? 'primary': 'light'">
-      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star-half"></ion-icon>
     </button>
     <button ion-button (click)="toggleFilter('reach')" icon-only [color]="filter == 'reach' ? 'primary': 'light'">
-      <ion-icon name="color-wand"></ion-icon>
+      <!-- <ion-icon name="color-wand"></ion-icon> -->
+      <ion-icon name="flag"></ion-icon>
     </button>
     <button ion-button (click)="toggleFilter('target')" icon-only [color]="filter == 'target' ? 'primary': 'light'">
-      <ion-icon name="disc"></ion-icon>
+      <ion-icon name="locate"></ion-icon>
     </button>
     <button ion-button (click)="toggleFilter('safety')" icon-only [color]="filter == 'safety' ? 'primary': 'light'">
-      <ion-icon name="cog"></ion-icon>
+      <ion-icon name="warning"></ion-icon>
 
     </button>
+
   </ion-buttons>
-  <!-- <ion-toolbar class="list-status">
-    <ion-grid  no-padding fixed>
-      <ion-row>
-        <ion-col col-3 text-center class="toolbar-col">
-          <h2><ion-icon name="star"></ion-icon></h2>
-          <p>0/1</p>
-          <p>Moonshot</p>
-        </ion-col>
-        <ion-col col-3 text-center class="toolbar-col">
-          <h2><ion-icon name="color-wand"></ion-icon></h2>
-          <p>0/3</p>
-          <p>Reach</p>
-        </ion-col>
-        <ion-col col-3 text-center class="toolbar-col">
-          <h2><ion-icon name="disc"></ion-icon></h2>
-          <p>0/3</p>
-          <p>Target</p>
-        </ion-col>
-        <ion-col col-3 text-center class="toolbar-col">
-          <h2><ion-icon name="cog"></ion-icon></h2>
-          <p>0/2</p>
-          <p>Safety</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar> -->
+  <ion-toolbar *ngIf="!collegeOdds" class="footer-text">
+    <p>Complete your academic profile to get your admission chances.</p>
+  </ion-toolbar>
 </ion-footer>

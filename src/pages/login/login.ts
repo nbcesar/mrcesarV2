@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, ModalController, Platform, ViewController, AlertController, LoadingController } from 'ionic-angular';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { NavParams, Platform, ViewController, AlertController, LoadingController } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
 
 //import { ValidationService } from '../../validators/validators';
 
@@ -73,7 +73,7 @@ export class LoginPage {
   }
 
   checkValid() {
-    console.log(this.loginForm.valid);
+    //console.log(this.loginForm.valid);
   }
 
 }

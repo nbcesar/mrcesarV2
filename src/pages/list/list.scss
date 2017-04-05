@@ -6,40 +6,35 @@ page-list {
     background: #fff;
   }
 
-  // .list-status {
-  //   //max-width: 540px !important;
-  //   background-color: #fff !important;
-  //   .toolbar-col {
-  //     display: flex;
-  //     flex-direction: column;
-  //     justify-content: center;
-  //     padding: 0;
-  //     //border-bottom: 3px solid black !important;
-  //     h2 {
-  //       margin-bottom: 0;
-  //       margin-top: 5px;
-  //     }
-  //     p {
-  //       margin: 0;
-  //     }
-  //   }
-  // }
-
   .footer {
     display: flex;
     justify-content: center;
   }
-  .bar-buttons {
+  .footer-buttons {
     display: flex;
     flex: 1;
     justify-content: space-around;
     max-width: 540px;
   }
 
+  .footer-text {
+    .toolbar-background {
+      background-color: #00A88C;
+    }
+    p {
+      text-align: center;
+      margin: 0;
+      font-weight: bold;
+      color: #fff;
+    }
+  }
   .grid {
     height: 100%;
     max-width: 720px !important;
 
+    .item {
+      padding-left: 5px;
+    }
     .label {
       margin-top: 5px;
       margin-bottom: 5px;
@@ -50,7 +45,7 @@ page-list {
     }
 
     .school-demo {
-      
+      padding: 0;
     }
   }
 }

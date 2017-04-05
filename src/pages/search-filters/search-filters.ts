@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
-/*
-  Generated class for the SearchFilters page.
+import { User } from '../../providers/user';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-search-filters',
   templateUrl: 'search-filters.html'
@@ -15,8 +11,11 @@ export class SearchFiltersPage {
 
   public filters: Object;
 
+  public collegeOdds: Object;
+
   public states: string[] = [];
   public majors: string[] = [];
+  public admissibility: string[] = [];
   public college_control = "all";
   public college_gender = "all";
   public college_type = "all";
@@ -28,13 +27,14 @@ export class SearchFiltersPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public userService: User
   ) {}
 
   ionViewDidLoad() {
+    this.collegeOdds = this.userService.collegeOdds;
     this.filters = this.navParams.get('filters');
     if (this.filters) {
-      console.log('filters yes');
       this.states = this.filters['states'];
       this.majors = this.filters['majors'];
       this.college_control = this.filters['college_control'];
@@ -44,9 +44,10 @@ export class SearchFiltersPage {
       this.showResults = this.filters['showResults'];
       this.test_optional = this.filters['test_optional'];
       this.liberal_arts = this.filters['liberal_arts'];
+      this.admissibility = this.filters['admissibility'];
     }
     else {
-      console.log('no filters');
+
     }
   }
 
@@ -62,7 +63,8 @@ export class SearchFiltersPage {
           college_degree: this.college_degree,
           showResults: this.showResults,
           test_optional: this.test_optional,
-          liberal_arts: this.liberal_arts
+          liberal_arts: this.liberal_arts,
+          admissibility: this.admissibility
         },
         search: true
     });
@@ -71,6 +73,7 @@ export class SearchFiltersPage {
   dismiss() {
     this.states = [];
     this.majors = [];
+    this.admissibility = [];
     this.college_control = "all";
     this.college_gender = "all";
     this.college_type = "all";
@@ -78,6 +81,7 @@ export class SearchFiltersPage {
     this.showResults = false;
     this.test_optional = false;
     this.liberal_arts = false;
+
     this.viewCtrl.dismiss({
       filters: {
         states: this.states,
@@ -88,7 +92,8 @@ export class SearchFiltersPage {
         college_degree: this.college_degree,
         showResults: this.showResults,
         test_optional: this.test_optional,
-        liberal_arts: this.liberal_arts
+        liberal_arts: this.liberal_arts,
+        admissibility: this.admissibility
       },
       search: false
     });

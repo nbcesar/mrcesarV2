@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Searchbar, ModalController, NavParams, Content } from 'ionic-angular';
+import { NavController, Searchbar, ModalController, Content,
+         AlertController  } from 'ionic-angular';
 
 import { SearchFiltersPage } from '../search-filters/search-filters';
+import { CollegeDetailPage } from '../college-detail/college-detail';
 
 import { User } from '../../providers/user';
 
@@ -23,20 +25,23 @@ export class SearchPage {
     college_degree:  "all",
     showResults:  false,
     test_optional:  false,
-    liberal_arts:  false
+    liberal_arts:  false,
+    admissibility: []
   };
   public filteredColleges = [];
 
   constructor(
     public navCtrl: NavController,
     public userService: User,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController
   ) {
 
   }
 
   ionViewDidLoad() {
-    this.userService.getLocalCollegeData();
+    //this.userService.getLocalCollegeData();
+
   }
 
   getColleges(searchbar?) {
@@ -47,7 +52,7 @@ export class SearchPage {
       //this.filteredColleges = [];
       return;
     }
-
+    
     this.filteredColleges = this.userService.allData.filter((v) => {
       this.search = true;
 
@@ -67,7 +72,9 @@ export class SearchPage {
           // filter by liberal_arts
           (!this.filters['liberal_arts'] || v.liberal_arts) &&
           // filter by test_optional
-          (!this.filters['test_optional'] || v.test_optional)
+          (!this.filters['test_optional'] || v.test_optional) &&
+          // filter by admissibilty
+          (this.filters['admissibility'].length == 0 || this.filters['admissibility'].indexOf(v.admit)) > -1
         ) {
           if (this.filters['majors'].length > 0) {
             let hasMajors = true;
@@ -83,6 +90,7 @@ export class SearchPage {
         else {
           return false;
         }
+
     });
 
     this.filteredColleges.sort(function compare(a,b) {
@@ -104,7 +112,6 @@ export class SearchPage {
   openFilters() {
     let filtersModal = this.modalCtrl.create(SearchFiltersPage, {filters: this.filters}, {enableBackdropDismiss: false});
     filtersModal.onDidDismiss(data => {
-      console.log(data);
       this.filters = data.filters;
       if (data.search) this.getColleges();
       else {
@@ -115,6 +122,26 @@ export class SearchPage {
       this.content.scrollToTop();
     });
     filtersModal.present();
+  }
+
+  goToCollege(id) {
+    this.userService.getCollege(id)
+    .then(collegeData => {
+      if (collegeData != 'error') {
+        this.navCtrl.push(CollegeDetailPage, {
+          collegeData: collegeData
+        });
+      }
+      // Set up alert
+      else {
+        let alert = this.alertCtrl.create({
+          title: 'No Connection',
+          subTitle: 'Sorry, no connection available.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    });
   }
 
 }

@@ -26,6 +26,16 @@
 
   <ion-list>
 
+    <ion-item *ngIf="collegeOdds">
+      <ion-label>Admission Chances</ion-label>
+      <ion-select [(ngModel)]="admissibility" multiple="true" cancelText="Cancel" okText="Okay!" placeholder="All">
+        <ion-option value="moonshot">Moonshot</ion-option>
+        <ion-option value="reach">Reach</ion-option>
+        <ion-option value="target">Target</ion-option>
+        <ion-option value="safety">Safety</ion-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item>
       <ion-label>State(s)</ion-label>
       <ion-select [(ngModel)]="states" multiple="true" cancelText="Clear"

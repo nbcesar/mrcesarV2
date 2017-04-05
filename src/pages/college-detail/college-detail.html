@@ -1,0 +1,116 @@
+<ion-header>
+
+  <ion-navbar>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 class="college_info_text " text-center>
+        <h1>
+          {{ collegeData?.instnm }}
+          <!-- <ion-icon *ngIf="collegeData?.womenonly" color="dark" name="female"></ion-icon>
+          <ion-icon *ngIf="collegeData?.menonly" color="dark" name="male"></ion-icon> -->
+        </h1>
+        <p>
+          {{ collegeData?.city }}, {{ collegeData?.stabbr }}
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="header-row">
+      <ion-col class="college_info_text" col-9>
+        <p>{{ collegeData?.locale }} | {{ collegeData?.control }}</p>
+      </ion-col>
+      <ion-col col-3 class="college-buttons">
+        <button *ngIf="!inList" ion-button color="light" icon-left  (click)="addSchool()">
+          <ion-icon color="dark" name="heart-outline"></ion-icon>
+          Add
+        </button>
+        <button *ngIf="inList" ion-button color="light" icon-left  (click)="removeSchool()">
+          <ion-icon color="danger" name="heart"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-md-6 class="stat-box">
+        <h4 class="stat-header" text-center>Graduation Rate: {{ collegeData?.grad_rate | percent:'1.0-0'}}</h4>
+        <canvas #gradCanvas></canvas>
+      </ion-col>
+
+      <ion-col col-12 col-md-6 class="stat-box">
+        <h4 class="stat-header" text-center># of Students: {{ collegeData?.ugds }} </h4>
+        <canvas #studentsCanvas></canvas>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 col-md-2 offset-md-1 class="stat-box">
+        <p class="stat-header" text-center>Retention Rate</p>
+        <canvas #retentionCanvas></canvas>
+      </ion-col>
+
+      <ion-col col-6 col-md-2 class="stat-box">
+        <p class="stat-header" text-center>Admit Rate</p>
+        <canvas #admitCanvas></canvas>
+      </ion-col>
+
+      <ion-col col-12 col-md-6 offset-md-1 class="stat-box">
+        <h4 class="stat-header" text-center>Test Scores: 25th-75th</h4>
+
+        <p class="range-p">SAT Reading</p>
+        <ion-range mode="md" class="test_range" min="200" max="800" color="dark" disabled="true"
+          dualKnobs="true" [(ngModel)]="satVR" pin="true">
+          <ion-label range-left>{{ collegeData?.satvr25 }}</ion-label>
+          <ion-label range-right>{{ collegeData?.satvr75 }}</ion-label>
+        </ion-range>
+
+        <p class="range-p">SAT Math</p>
+        <ion-range mode="md" class="test_range" min="200" max="800" color="dark" disabled="true"
+          dualKnobs="true" [(ngModel)]="satMT" pin="true">
+          <ion-label range-left>{{ collegeData?.satmt25 }}</ion-label>
+          <ion-label range-right>{{ collegeData?.satmt75 }}</ion-label>
+        </ion-range>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 col-md-6 class="stat-box">
+        <h4 class="stat-header" text-center>Popular Majors</h4>
+        <!-- <ion-item class="pop-majors" *ngFor="let major of popMajors; let i = index" text-wrap no-lines>
+          <p><span class="pop-perc">{{ major[0] | percent: '1.0-0' }}: </span><span class="pop-name"> {{ major[1] }}</span></p>
+        </ion-item> -->
+        <ul>
+          <li class="pop-majors" *ngFor="let major of popMajors; let i = index" text-wrap>
+            <p><span class="pop-perc">{{ major[0] | percent: '1.0-0' }}: </span><span class="pop-name"> {{ major[1] }}</span></p>
+          </li>
+        </ul>
+      </ion-col>
+
+      <ion-col col-12 col-md-6 class="stat-box">
+        <h4 class="stat-header" text-center>$ Outcomes</h4>
+        <ion-item class="outcomes" no-lines>
+          <h6>{{ collegeData?.md_earn_wne_p10 | currency:'USD':true }}</h6>
+          <p>Average income after 10 years.</p>
+        </ion-item>
+        <ion-item class="outcomes" no-lines>
+          <h6>{{ collegeData?.grad_debt_mdn_supp | currency:'USD':true }}</h6>
+          <p>Average Debt</p>
+        </ion-item>
+        <ion-item class="outcomes" no-lines>
+          <h6>{{ collegeData?.grad_debt_mdn10yr_supp | currency:'USD':true }}</h6>
+          <p>Average Payment</p>
+        </ion-item>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

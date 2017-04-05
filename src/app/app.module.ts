@@ -8,6 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
 import { LoginPage } from '../pages/login/login';
 import { SearchFiltersPage } from '../pages/search-filters/search-filters';
+import { CollegeDetailPage } from '../pages/college-detail/college-detail';
 
 import { User } from '../providers/user';
 
@@ -25,7 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LandingPage,
     LoginPage,
-    SearchFiltersPage
+    SearchFiltersPage,
+    CollegeDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -40,7 +42,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LandingPage,
     LoginPage,
-    SearchFiltersPage
+    SearchFiltersPage,
+    CollegeDetailPage
   ],
   providers: [
     StatusBar,

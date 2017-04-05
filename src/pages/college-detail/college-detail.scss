@@ -1,0 +1,93 @@
+page-college-detail {
+  .header .toolbar-background {
+    background-color: #00A88C !important;
+  }
+  .back-button {
+    color: #000;
+  }
+  .scroll-content {
+    background-color: #f4f4f4;
+    padding-top: 0 !important;
+    padding: 0 !important;
+  }
+  .grid {
+    max-width: 960px;
+    background-color: #fff;
+    border-radius: 5px;
+
+    .college-demo {
+      border-bottom: 2px #f4f4f4 solid;
+    }
+  }
+  .college-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .college_info_text {
+
+    h1 {
+      margin-bottom: 2px;
+    }
+    p {
+      font-size: 1.15em;
+      margin-top: 2px;
+      margin-bottom: 0;
+      color: #000;
+    }
+
+  }
+
+  .header-row {
+    border-bottom: 1px solid #f4f4f4;
+  }
+
+  ion-card-header {
+    h3 {
+      font-weight: bold;
+    }
+  }
+
+  .stat-header {
+    color: #00A88C;
+  }
+
+  .stat-box {
+    margin-top: 5px;
+    box-shadow: 3px 3px 5px #888888;
+  }
+
+  .range-md .range-pin, .range-ios .range-pin {
+    -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
+    transform        : translate3d(0, 0, 0) scale(1) !important;
+  }
+
+  .range-p {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .pop-majors {
+    padding-left: 0;
+    list-style: none;
+    p {
+      font-size: 1.15em;
+    }
+    .label {
+      margin: 5px;
+    }
+  }
+  .pop-perc {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .outcomes {
+    text-align: center;
+    padding-left: 0;
+    h6 {
+      font-weight: bold;
+    }
+  }
+}
