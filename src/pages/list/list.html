@@ -10,46 +10,46 @@
     </ion-buttons>
   </ion-navbar>
 
+  <div class="progress-outer">
+    <div class="progress-inner" [style.width]="progress + '%'">
+        {{ progress }}%
+    </div>
+  </div>
+
 </ion-header>
 
 <ion-content padding>
 
   <ion-grid no-padding class="college-list">
-
-  
-    <ion-row class="progress-bar">
-      <ion-col>
-        <div class="progress-outer">
-          <div class="progress-inner"><!--[style.width]="50 + '%'"-->
-              50%
-          </div>
-        </div>
+    <ion-row class="list-info">
+      <ion-col col-12>
+        <p>{{ list_message }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-list no-lines [reorder]="reOrder" (ionItemReorder)="reorderItems($event)">
+          <ion-item *ngFor="let school of filteredList; let i = index" text-wrap>
+            <ion-row>
+              <ion-col col-2 class="school-demo" align-self-center>
+                <h1><ion-icon name="{{ school?.icon }}" color="dark"></ion-icon></h1>
+              </ion-col>
+              <ion-col (click)="goToCollege(school.unitid)" col-9 class="school-demo">
+                <h2>
+                  <!-- <ion-icon name="{{ school.icon }}"></ion-icon> -->
+                  {{ school.instnm }}
+                </h2>
+                <p>{{ school.city }}, {{ school.stabbr }}</p>
+              </ion-col>
+              <ion-col *ngIf="listOptions" col-1 class="school-demo" align-self-center>
+                <ion-icon color="danger" name="trash" (click)="removeSchool(school)"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
 
-    <ion-list  no-lines>
-
-      <ion-item-group [reorder]="reOrder" (ionItemReorder)="reorderItems($event)" >
-        <ion-item *ngFor="let school of filteredList; let i = index" text-wrap>
-          <ion-row>
-            <ion-col col-2 class="school-demo" align-self-center>
-              <h1><ion-icon name="{{ school?.icon }}" color="dark"></ion-icon></h1>
-            </ion-col>
-            <ion-col (click)="goToCollege(school.unitid)" col-9 class="school-demo">
-              <h2>
-                <!-- <ion-icon name="{{ school.icon }}"></ion-icon> -->
-                {{ school.instnm }}
-              </h2>
-              <p>{{ school.city }}, {{ school.stabbr }}</p>
-            </ion-col>
-            <ion-col *ngIf="listOptions" col-1 class="school-demo" align-self-center>
-              <ion-icon color="danger" name="trash" (click)="removeSchool(school)"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-item-group>
-
-    </ion-list>
   </ion-grid>
 
 </ion-content>

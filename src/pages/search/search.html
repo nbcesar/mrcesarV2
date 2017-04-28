@@ -24,33 +24,69 @@
   </ion-grid>
 
   <ion-grid class="show-search" *ngIf="search">
+
     <ion-list no-lines>
+      <ion-list-header no-lines>
+        <p>Results: {{ filteredColleges.length }}</p>
+      </ion-list-header>
+
+      <ion-item class="search_item" text-wrap *ngFor="let college of filteredColleges; let i = index;">
+        <button  ion-button icon-only clear item-right (click)="toggleInList(college, i)">
+          <ion-icon *ngIf="college?.inList" name="heart" color="danger"></ion-icon>
+          <ion-icon *ngIf="!college?.inList" name="heart-outline" color="dark"></ion-icon>
+        </button>
+
+        <div (click)="goToCollege(college.unitid)">
+        <h2>{{ college?.instnm }}</h2>
+        <p> {{ college?.city}}, {{ college?.state}} - <span class="admit"><ion-icon name="{{ college?.icon }}"></ion-icon>  {{ college?.admit | uppercase }}</span></p>
+        <ion-row class="college_stats_row">
+          <ion-col no-padding col-4>
+            <h3><span *ngIf="college?.grad_rate != 'NULL'">{{ college.grad_rate | percent:'1.0-0' }}</span></h3>
+            <p>Graduation Rate</p>
+          </ion-col>
+          <ion-col no-padding col-4>
+            <h3><span *ngIf="college?.retention_rate != 'NULL'">{{ college.retention_rate | percent:'1.0-0' }}</span></h3>
+            <p>Retention Rate</p>
+          </ion-col>
+          <ion-col no-padding col-4>
+            <h3><span *ngIf="college?.adm_rate != 'NULL'">{{ college.adm_rate | percent:'1.0-0' }}</span></h3>
+            <p>Admission Rate</p>
+          </ion-col>
+        </ion-row>
+        </div>
+      </ion-item>
+
+    </ion-list>
+
+    <!-- <ion-list no-lines>
       <ion-list-header no-lines>
         <p>Results: {{ filteredColleges.length }}</p>
       </ion-list-header>
       <ion-item class="search_item" text-wrap tappable
         *ngFor="let college of filteredColleges" (click)="goToCollege(college.unitid)">
-        <h2>
-          <!-- <ion-icon name="{{ college.icon }}"></ion-icon> -->
-          {{ college?.instnm }}
-        </h2>
-        <p> {{ college?.city}}, {{ college?.state}} - <span class="admit"><ion-icon name="{{ college?.icon }}"></ion-icon>  {{ college?.admit | uppercase }}</span></p>
+          <h2>
+            <button *ngIf="college?.inList" ion-button icon-only clear><ion-icon  name="heart" color="danger"></ion-icon></button>
+            <button *ngIf="!college?.inList" ion-button icon-only clear><ion-icon  name="heart-outline" color="dark"></ion-icon></button>
+            {{ college?.instnm }}
+          </h2>
+          <p> {{ college?.city}}, {{ college?.state}} - <span class="admit"><ion-icon name="{{ college?.icon }}"></ion-icon>  {{ college?.admit | uppercase }}</span></p>
+
         <ion-row class="college_stats_row">
-          <ion-col col-4>
+          <ion-col no-padding col-4>
             <h2><span *ngIf="college?.grad_rate != 'NULL'">{{ college.grad_rate | percent:'1.0-0' }}</span></h2>
             <p>Graduation Rate</p>
           </ion-col>
-          <ion-col col-4>
+          <ion-col no-padding col-4>
             <h2><span *ngIf="college?.retention_rate != 'NULL'">{{ college.retention_rate | percent:'1.0-0' }}</span></h2>
             <p>Retention Rate</p>
           </ion-col>
-          <ion-col col-4>
+          <ion-col no-padding col-4>
             <h2><span *ngIf="college?.adm_rate != 'NULL'">{{ college.adm_rate | percent:'1.0-0' }}</span></h2>
             <p>Admission Rate</p>
           </ion-col>
         </ion-row>
       </ion-item>
 
-    </ion-list>
+    </ion-list> -->
   </ion-grid>
 </ion-content>

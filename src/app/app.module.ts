@@ -11,6 +11,7 @@ import { LandingPage } from '../pages/landing/landing';
 import { LoginPage } from '../pages/login/login';
 import { SearchFiltersPage } from '../pages/search-filters/search-filters';
 import { CollegeDetailPage } from '../pages/college-detail/college-detail';
+import { CreateStudentAcct } from '../pages/create-student-acct/create-student-acct';
 
 import { User } from '../providers/user';
 
@@ -29,7 +30,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LandingPage,
     LoginPage,
     SearchFiltersPage,
-    CollegeDetailPage
+    CollegeDetailPage,
+    //CreateStudentAcct
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LandingPage,
     LoginPage,
     SearchFiltersPage,
-    CollegeDetailPage
+    CollegeDetailPage,
+    //CreateStudentAcct
   ],
   providers: [
     StatusBar,

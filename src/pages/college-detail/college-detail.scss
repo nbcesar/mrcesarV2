@@ -68,9 +68,14 @@ page-college-detail {
     border: 1px solid #f4f4f4;
   }
 
-  .range-md .range-pin, .range-ios .range-pin {
-    -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
-    transform        : translate3d(0, 0, 0) scale(1) !important;
+  // .range-md .range-pin, .range-ios .range-pin {
+  //   -webkit-transform: translate3d(0, 0, 0) scale(1) !important;
+  //   transform        : translate3d(0, 0, 0) scale(1) !important;
+  // }
+
+  .range-pin, .range-pin::before {
+    background: #1AE8C1 !important;
+    color: #1AE8C1 !important;
   }
 
   .range-p {
@@ -79,6 +84,17 @@ page-college-detail {
     text-align: center;
   }
 
+  .range .label {
+    font-weight: bold;
+  }
+
+  .range-knob {
+    background-color: #1AE8C1 !important;
+  }
+
+  .majors_list {
+    padding-left: 10px;
+  }
   .pop-majors {
     padding-left: 0;
     list-style: none;
@@ -90,9 +106,12 @@ page-college-detail {
     }
   }
   .pop-perc {
-    color: #000;
+    color: #00A88C;
     font-weight: bold;
     text-align: left;
+  }
+  .pop-name {
+    color: #504CED;
   }
 
   .outcomes {
@@ -100,6 +119,11 @@ page-college-detail {
     padding-left: 0;
     h6 {
       font-weight: bold;
+      color: #00A88C;
+      font-size: 1.25em;
+    }
+    p {
+      color: black;
     }
   }
 }

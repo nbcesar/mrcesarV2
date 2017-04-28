@@ -1,4 +1,8 @@
 page-list {
+
+  .item {
+    font-size: 2em;
+  }
   .header .toolbar-background {
     background-color: #00A88C !important;
   }
@@ -9,7 +13,12 @@ page-list {
   .footer {
     // display: flex;
     // justify-content: center;
+    .toolbar-content {
+      display: flex;
+      justify-content: center;
+    }
   }
+
   .footer-buttons {
     display: flex;
     flex: 1;
@@ -46,36 +55,60 @@ page-list {
 
     .school-demo {
       padding: 0;
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+      }
+      h2 {
+        //font-size: 2.5rem;
+      }
     }
 
     ion-list {
       border-top: 1px solid black;
-      margin-top: 5px;
+      margin-top: 10px;
     }
   }
 
   .progress-bar {
     //border-bottom: 2px black solid !important;
     margin-bottom: 20px;
+
   }
   .progress-outer {
-    width: 96%;
+    max-width: 720px;
+    //width: 96%;
     //margin: 10px 2%;
-    //padding: 3px;
+    padding: 1px;
     text-align: center;
-    //background-color: #00A88C;
+    background-color: #000;//#f4f4f4;
     border: 1px solid #dcdcdc;
     color: #fff;
-    border-radius: 20px;
+    //border-radius: 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
     }
 
   .progress-inner {
     min-width: 15%;
-    width: 50%;
+    //width: 50%;
     white-space: nowrap;
     overflow: hidden;
     //padding: 5px;
-    border-radius: 20px;
+    //border-radius: 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     background-color: #c0392b;//#00A88C;
+  }
+
+  .list-info {
+    p {
+      text-align: center;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      color: gray;
+    }
   }
 }

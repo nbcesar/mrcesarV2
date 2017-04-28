@@ -52,6 +52,35 @@ export class CollegeDetailPage {
       }
     });
 
+    // Color Variables
+    let green = '#00A88C';
+    let yellow = '#FFCC05';
+    let red = '#E66F84';
+
+    // Calculate data color
+    var gradColorWhite = yellow;
+    var gradColorAsian = yellow;
+    var gradColorBlack = yellow;
+    var gradColorLatino = yellow;
+
+    if (this.collegeData['c150_white'] > .7999999) gradColorWhite = green;
+    else if (this.collegeData['c150_white'] < .51) gradColorWhite = red;
+    if (this.collegeData['c150_asian'] > .7999999) gradColorAsian = green;
+    else if (this.collegeData['c150_asian'] < .51) gradColorAsian = red;
+    if (this.collegeData['c150_black'] > .7999999) gradColorBlack = green;
+    else if (this.collegeData['c150_black'] < .51) gradColorBlack = red;
+    if (this.collegeData['c150_hisp'] > .7999999) gradColorLatino = green;
+    else if (this.collegeData['c150_hisp'] < .51) gradColorLatino = red;
+
+
+    var retentionColor = yellow;
+    if (this.collegeData['retention_rate'] > .80) retentionColor = green;
+    else if (this.collegeData['retention_rate'] < .65) retentionColor = red;
+
+    var admitColor = yellow;
+    if (this.collegeData['admit_rate'] < .26) admitColor = green;
+    else if (this.collegeData['admit_rate'] > .65) admitColor = red;
+
     // Create charts
     this.gradChart = new Chart(this.gradCanvas.nativeElement, {
       type: 'bar',
@@ -66,16 +95,16 @@ export class CollegeDetailPage {
               Math.round(this.collegeData['c150_hisp'] * 100)
             ],
             backgroundColor: [
-                '#f1c40f',
-                '#f1c40f',
-                '#f1c40f',
-                '#f1c40f',
+              gradColorWhite,
+              gradColorAsian,
+              gradColorBlack,
+              gradColorLatino
             ],
             borderColor: [
-                '#f1c40f',
-                '#f1c40f',
-                '#f1c40f',
-                '#f1c40f',
+              gradColorWhite,
+              gradColorAsian,
+              gradColorBlack,
+              gradColorLatino
             ],
             borderWidth: 1
         }]
@@ -136,6 +165,90 @@ export class CollegeDetailPage {
 
       }
     });
+    this.studentsChart = new Chart(this.studentsCanvas.nativeElement, {
+      type: 'bar',
+      data: {
+        labels: ["White", "Asian", "Black", "Latino"],
+        datasets: [{
+            label: 'Grad Rate',
+            data: [
+              Math.round(this.collegeData['ugds_white'] * 100),
+              Math.round(this.collegeData['ugds_asian'] * 100),
+              Math.round(this.collegeData['ugds_black'] * 100),
+              Math.round(this.collegeData['ugds_hisp'] * 100)
+            ],
+            backgroundColor: [
+                '#504CED',
+                '#504CED',
+                '#504CED',
+                '#504CED',
+            ],
+            borderColor: [
+                '#504CED',
+                '#504CED',
+                '#504CED',
+                '#504CED',
+            ],
+            borderWidth: 1
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+              ticks: {
+                beginAtZero:true,
+                min: 0,
+                max: 100,
+                stepSize: 25
+                // callback: function(value) {
+                //   return value;
+                // }
+              },
+              scaleLabel: {
+                display: false,
+                labelString: "Percentage"
+              }
+          }]
+        },
+        tooltips: {
+          enabled: false
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          onComplete: function() {
+            this.chart.controller.draw();
+            var ctx = this.chart.ctx;
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize + 2, 'bold', Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            this.data.datasets.forEach(function (dataset) {
+              for (var i = 0; i < dataset.data.length; i++) {
+                var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+                var textY: Number;
+                if (model.y > 90) {
+                  textY = model.y - 3;
+                  ctx.fillStyle = "black";
+                  ctx.strokeStyle = "black";
+                }
+                else {
+                  textY = model.y + 22;
+                  ctx.fillStyle = "white";
+                  ctx.strokeStyle = "white";
+                }
+                ctx.fillText(dataset.data[i] + "%", model.x, textY);
+              }
+            });
+          },
+        }
+
+      }
+    });
+
     this.retentionChart = new Chart(this.retentionCanvas.nativeElement, {
       type: 'doughnut',
       data: {
@@ -153,12 +266,12 @@ export class CollegeDetailPage {
               "black"
             ],
             backgroundColor: [
-              "black",
-              "white"
+              retentionColor,
+              "#E8E8E8"
             ],
             hoverBackgroundColor: [
-              "black",
-              "white"
+              "E8E8E8",
+              "E8E8E8"
             ],
           }
         ]
@@ -204,12 +317,12 @@ export class CollegeDetailPage {
               "black"
             ],
             backgroundColor: [
-              "black",
-              "white"
+              admitColor,
+              "#E8E8E8"
             ],
             hoverBackgroundColor: [
-              "black",
-              "white"
+              "E8E8E8",
+              "E8E8E8"
             ],
           }
         ]
@@ -236,89 +349,6 @@ export class CollegeDetailPage {
             ctx.fillText(this.data.datasets[0].data[0] + "%", width / 2,height / 2);
           }
         }
-      }
-    });
-    this.studentsChart = new Chart(this.studentsCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: ["White", "Asian", "Black", "Latino"],
-        datasets: [{
-            label: 'Grad Rate',
-            data: [
-              Math.round(this.collegeData['ugds_white'] * 100),
-              Math.round(this.collegeData['ugds_asian'] * 100),
-              Math.round(this.collegeData['ugds_black'] * 100),
-              Math.round(this.collegeData['ugds_hisp'] * 100)
-            ],
-            backgroundColor: [
-                '#3498db',
-                '#3498db',
-                '#3498db',
-                '#3498db',
-            ],
-            borderColor: [
-                '#3498db',
-                '#3498db',
-                '#3498db',
-                '#3498db',
-            ],
-            borderWidth: 1
-        }]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          yAxes: [{
-              ticks: {
-                beginAtZero:true,
-                min: 0,
-                max: 100,
-                stepSize: 25
-                // callback: function(value) {
-                //   return value;
-                // }
-              },
-              scaleLabel: {
-                display: false,
-                labelString: "Percentage"
-              }
-          }]
-        },
-        tooltips: {
-          enabled: false
-        },
-        hover: {
-          animationDuration: 0
-        },
-        animation: {
-          onComplete: function() {
-            this.chart.controller.draw();
-            var ctx = this.chart.ctx;
-            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize + 2, 'bold', Chart.defaults.global.defaultFontFamily);
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'bottom';
-            this.data.datasets.forEach(function (dataset) {
-              for (var i = 0; i < dataset.data.length; i++) {
-                var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
-                var textY: Number;
-                if (model.y > 90) {
-                  textY = model.y - 3;
-                  ctx.fillStyle = "black";
-                  ctx.strokeStyle = "black";
-                }
-                else {
-                  textY = model.y + 22;
-                  ctx.fillStyle = "black";
-                  ctx.strokeStyle = "black";
-                }
-                ctx.fillText(dataset.data[i] + "%", model.x, textY);
-              }
-            });
-          },
-        }
-
       }
     });
 

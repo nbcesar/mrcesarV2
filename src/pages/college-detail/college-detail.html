@@ -52,12 +52,12 @@
 
     <ion-row justify-content-around>
       <ion-col col-5 col-md-2 class="stat-box">
-        <h4 class="stat-header" text-center>Retention Rate</h4>
+        <h4 class="stat-header" text-center>Retention <br /> Rate</h4>
         <canvas #retentionCanvas></canvas>
       </ion-col>
 
       <ion-col col-5 col-md-2 class="stat-box">
-        <h4 class="stat-header" text-center>Admit Rate</h4>
+        <h4 class="stat-header" text-center>Admit <br /> Rate</h4>
         <canvas #admitCanvas></canvas>
       </ion-col>
 
@@ -87,7 +87,7 @@
         <!-- <ion-item class="pop-majors" *ngFor="let major of popMajors; let i = index" text-wrap no-lines>
           <p><span class="pop-perc">{{ major[0] | percent: '1.0-0' }}: </span><span class="pop-name"> {{ major[1] }}</span></p>
         </ion-item> -->
-        <ul>
+        <ul class="majors_list">
           <li class="pop-majors" *ngFor="let major of popMajors; let i = index" text-wrap>
             <p><span class="pop-perc">{{ major[0] | percent: '1.0-0' }}: </span><span class="pop-name"> {{ major[1] }}</span></p>
           </li>

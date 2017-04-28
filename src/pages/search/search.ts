@@ -52,7 +52,7 @@ export class SearchPage {
       //this.filteredColleges = [];
       return;
     }
-    
+
     this.filteredColleges = this.userService.allData.filter((v) => {
       this.search = true;
 
@@ -102,7 +102,40 @@ export class SearchPage {
     });
 
     this.filteredColleges = this.filteredColleges.slice(0,99);
+    this.checkIfInList();
     this.content.scrollToTop();
+  }
+
+  checkIfInList() {
+
+    if (this.userService.localList) {
+      this.filteredColleges.forEach(college => {
+          let id = college['unitid'];
+          if (this.userService.localList.hasOwnProperty(id)) {
+            college['inList'] = true;
+          }
+          else college['inList'] = false;
+      });
+    }
+
+  }
+
+  toggleInList(college, index) {
+    // If school in list - remove from list
+
+    if (!college['inList']) {
+      this.userService.getCollege(college['unitid'])
+      .then(collegeData => {
+        this.userService.addSchoolToList(collegeData);
+      });
+
+    }
+    // Else, add school to list
+    else {
+      this.userService.removeSchoolFromList(college);
+    }
+    this.filteredColleges[index]['inList'] = !this.filteredColleges[index]['inList'];
+
   }
 
   clearSearch() {
